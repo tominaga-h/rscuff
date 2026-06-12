@@ -46,9 +46,6 @@ impl Path {
 fn test_from() {
     let path = Path::from(".");
     assert_eq!(path.get(), ".");
-
-    let joined = path.join("foo");
-    assert_eq!(joined.as_str(), "./foo");
 }
 
 #[test]
@@ -59,25 +56,37 @@ fn test_join() {
 }
 
 #[test]
-fn test_basename() {
+fn test_basename_file() {
     let path = Path::from("/foo/test.txt");
     assert_eq!(path.basename(), Some("test.txt"));
+}
 
+#[test]
+fn test_basename_dir() {
     let path = Path::from("/foo/");
     assert_eq!(path.basename(), Some("foo"));
 }
 
 #[test]
-fn test_dirname() {
+fn test_dirname_file() {
     let path = Path::from("/foo/test.txt");
     assert_eq!(path.dirname(), Some("/foo"));
+}
 
+#[test]
+fn test_dirname_nested() {
     let path = Path::from("/foo/bar/test.txt");
     assert_eq!(path.dirname(), Some("/foo/bar"));
+}
 
+#[test]
+fn test_dirname_root_parent() {
     let path = Path::from("/test.txt");
     assert_eq!(path.dirname(), Some("/"));
+}
 
+#[test]
+fn test_dirname_root() {
     let path = Path::from("/");
     assert_eq!(path.dirname(), None);
 }
