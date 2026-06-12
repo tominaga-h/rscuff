@@ -7,4 +7,5 @@ description = "A scaffolding tool written by Rust"
 license = "MIT"
 
 [dependencies]
+camino = "1.2.2"
 clap = { version = "4", features = ["derive"] }
