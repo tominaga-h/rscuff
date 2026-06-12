@@ -60,20 +60,20 @@ fn test_join() {
 
 #[test]
 fn test_basename() {
-    let path = Path::from("./foo/test.txt");
+    let path = Path::from("/foo/test.txt");
     assert_eq!(path.basename(), Some("test.txt"));
 
-    let path = Path::from("./foo/");
+    let path = Path::from("/foo/");
     assert_eq!(path.basename(), Some("foo"));
 }
 
 #[test]
 fn test_dirname() {
-    let path = Path::from("./foo/test.txt");
-    assert_eq!(path.dirname(), Some("./foo"));
+    let path = Path::from("/foo/test.txt");
+    assert_eq!(path.dirname(), Some("/foo"));
 
-    let path = Path::from("./foo/bar/test.txt");
-    assert_eq!(path.dirname(), Some("./foo/bar"));
+    let path = Path::from("/foo/bar/test.txt");
+    assert_eq!(path.dirname(), Some("/foo/bar"));
 
     let path = Path::from("/test.txt");
     assert_eq!(path.dirname(), Some("/"));
