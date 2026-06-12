@@ -2,5 +2,9 @@
 name = "rscuff"
 version = "0.1.0"
 edition = "2024"
+authors = ["tominaga-h"]
+description = "A scaffolding tool written by Rust"
+license = "MIT"
 
 [dependencies]
+clap = { version = "4", features = ["derive"] }
