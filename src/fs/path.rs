@@ -5,6 +5,7 @@ pub struct Path {
     path: Utf8PathBuf,
 }
 
+#[allow(dead_code)]
 impl Path {
     pub fn new(path: Utf8PathBuf) -> Self {
         Self { path }
