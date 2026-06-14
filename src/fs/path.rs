@@ -21,9 +21,9 @@ impl Path {
         self.path.as_str()
     }
 
-    // パスを結合する
-    pub fn join(&self, other: &str) -> Utf8PathBuf {
-        self.path.join(other)
+    // パスを結合したPathを返す
+    pub fn join(&self, other: &str) -> Self {
+        Self::new(self.path.join(other))
     }
 
     // basename=パスのファイル名を取得する
@@ -51,7 +51,7 @@ fn test_from() {
 fn test_join() {
     let path = Path::from(".");
     let joined = path.join("foo");
-    assert_eq!(joined.as_str(), "./foo");
+    assert_eq!(joined.get(), "./foo");
 }
 
 #[test]
