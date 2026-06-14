@@ -1,5 +1,7 @@
 use camino::Utf8PathBuf;
 
+pub mod storage;
+
 // 設定値を持つ構造体
 #[allow(dead_code)]
 pub struct Config {
