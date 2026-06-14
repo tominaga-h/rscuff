@@ -12,7 +12,7 @@ impl Path {
     }
 
     // 文字列からPathを作成する
-    pub fn from(path: &str) -> Self {
+    pub fn from_str(path: &str) -> Self {
         Self::new(camino::Utf8PathBuf::from(path))
     }
 
@@ -42,50 +42,50 @@ impl Path {
 }
 
 #[test]
-fn test_from() {
-    let path = Path::from(".");
+fn test_from_str() {
+    let path = Path::from_str(".");
     assert_eq!(path.get(), ".");
 }
 
 #[test]
 fn test_join() {
-    let path = Path::from(".");
+    let path = Path::from_str(".");
     let joined = path.join("foo");
     assert_eq!(joined.get(), "./foo");
 }
 
 #[test]
 fn test_basename_file() {
-    let path = Path::from("/foo/test.txt");
+    let path = Path::from_str("/foo/test.txt");
     assert_eq!(path.basename(), Some("test.txt"));
 }
 
 #[test]
 fn test_basename_dir() {
-    let path = Path::from("/foo/");
+    let path = Path::from_str("/foo/");
     assert_eq!(path.basename(), Some("foo"));
 }
 
 #[test]
 fn test_dirname_file() {
-    let path = Path::from("/foo/test.txt");
+    let path = Path::from_str("/foo/test.txt");
     assert_eq!(path.dirname(), Some("/foo"));
 }
 
 #[test]
 fn test_dirname_nested() {
-    let path = Path::from("/foo/bar/test.txt");
+    let path = Path::from_str("/foo/bar/test.txt");
     assert_eq!(path.dirname(), Some("/foo/bar"));
 }
 
 #[test]
 fn test_dirname_root_parent() {
-    let path = Path::from("/test.txt");
+    let path = Path::from_str("/test.txt");
     assert_eq!(path.dirname(), Some("/"));
 }
 
 #[test]
 fn test_dirname_root() {
-    let path = Path::from("/");
+    let path = Path::from_str("/");
     assert_eq!(path.dirname(), None);
 }
