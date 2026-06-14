@@ -31,7 +31,6 @@ impl Config {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use shellexpand;
     use tempfile::TempDir;
 
     #[test]
