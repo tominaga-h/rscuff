@@ -19,7 +19,7 @@ impl ConfigStorage {
     }
 
     // 設定フォルダを作成する。設定フォルダが既に存在する場合はエラーを返す
-    pub fn create(&self) -> Result<bool> {
+    pub fn create(&self) -> Result<()> {
         if self.exists() {
             return Err(Error::new(
                 ErrorKind::AlreadyExists,
@@ -27,11 +27,13 @@ impl ConfigStorage {
             ));
         }
 
-        println!("storage: {}", self.config.get_storage_path());
-        match fs::create_dir(self.config.get_storage_path()) {
-            Ok(_) => Ok(true),
-            Err(e) => Err(e),
-        }
+        // 設定フォルダの作成
+        fs::create_dir(self.config.get_storage_path())?;
+
+        // 設定フォルダ配下のgroupsフォルダの作成
+        fs::create_dir(self.config.get_groups_path())?;
+
+        Ok(())
     }
 }
 
@@ -62,13 +64,13 @@ mod tests {
     }
 
     #[test]
-    fn test_create_true() {
+    fn test_create() {
         let tempdir = TempDir::new().unwrap();
         let tempdir_path = Utf8PathBuf::from_path_buf(tempdir.path().to_path_buf()).unwrap();
         let config = Config::new("test_rscuff".to_string(), tempdir_path);
         let storage = ConfigStorage::new(config);
 
-        assert!(storage.create().unwrap());
+        assert!(storage.create().is_ok());
     }
 
     #[test]
