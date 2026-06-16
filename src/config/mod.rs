@@ -2,6 +2,8 @@ use camino::Utf8PathBuf;
 
 pub mod storage;
 
+use storage::ConfigStorage;
+
 // 設定値を持つ構造体
 #[allow(dead_code)]
 pub struct Config {
@@ -28,6 +30,15 @@ impl Config {
     pub fn get_groups_path(&self) -> Utf8PathBuf {
         self.get_storage_path().join("groups")
     }
+}
+
+pub fn get_storage() -> ConfigStorage {
+    let home_dir = shellexpand::tilde("~");
+    let config = Config::new(
+        ".rscuff".to_string(),
+        Utf8PathBuf::from(home_dir.to_string()),
+    );
+    ConfigStorage::new(config)
 }
 
 #[cfg(test)]

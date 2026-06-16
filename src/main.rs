@@ -12,12 +12,12 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    Test,
+    Add(commands::add::AddArgs),
 }
 
 fn main() {
     let cli = Cli::parse();
     match cli.command {
-        Commands::Test => commands::test::run(),
+        Commands::Add(args) => commands::add::run(args),
     }
 }
