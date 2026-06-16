@@ -4,12 +4,12 @@ pub mod storage;
 
 use storage::ConfigStorage;
 
-// 設定値を持つ構造体
+/// 設定値を持つ構造体
 #[allow(dead_code)]
 pub struct Config {
-    // 設定フォルダの名称
+    /// 設定フォルダの名称
     storage_name: String,
-    // 設定フォルダを置く場所のパス。設定フォルダのパスは`<storage_path>/<storage_name>` というパスになる
+    /// 設定フォルダを置く場所のパス。設定フォルダのパスは`<storage_path>/<storage_name>` というパスになる
     storage_dir: Utf8PathBuf,
 }
 #[allow(dead_code)]
