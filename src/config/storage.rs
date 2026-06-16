@@ -4,7 +4,7 @@ use std::io::{Error, ErrorKind, Result};
 
 #[allow(dead_code)]
 pub struct ConfigStorage {
-    config: Config,
+    pub config: Config,
 }
 
 #[allow(dead_code)]
